@@ -8,10 +8,30 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        ghanor: {
+          yellow: {
+            "100": "#AB893A",
+            "300": "#CDB273",
+            "700": "#DDDCD9",
+          },
+          neutral: {
+            "0": "#0A0A0A",
+            "200": "#131313",
+            "300": "#242424",
+            "400": "#353535",
+            "500": "#505050",
+            "700": "#A3A3A3",
+          },
+          status: {
+            warning: '#D33B3B',
+            success: '#74BE39'
+          }
+        }
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "scale-bg-l": "url('/images/scales-bg-l.jpg')",
+        "scale-bg-r": "url('/images/scales-bg-r.jpg')"
       },
     },
   },
