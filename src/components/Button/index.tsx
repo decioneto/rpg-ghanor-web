@@ -1,4 +1,5 @@
 import { icons } from "lucide-react";
+import { MouseEvent } from "react";
 import { tv } from "tailwind-variants";
 import { Icon } from "../Icon";
 
@@ -6,6 +7,7 @@ type ButtonProps = {
     label: string;
     style?: "primary" | "secondary" | "ghost";
     icon?: JSX.Element;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 type ButtonIconType = {
@@ -23,9 +25,14 @@ const button = tv({
     },
 });
 
-export function Button({ label, style = "primary", icon }: ButtonProps) {
+export function Button({
+    label,
+    style = "primary",
+    icon,
+    onClick,
+}: ButtonProps) {
     return (
-        <button className={button({ color: style })}>
+        <button className={button({ color: style })} onClick={onClick}>
             {icon}
             {label}
         </button>
