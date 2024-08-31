@@ -11,15 +11,23 @@ export default function SignInPage() {
             </div>
             <Container>
                 <div className="flex flex-col gap-8 w-[400px]">
+                    <h3 className="text-center font-title text-ghanor-yellow-700 text-lg leading-relaxed">
+                        Que bom te ver de volta, <br />
+                        aventureiro!
+                    </h3>
+                    <div className="w-32 h-[1px] bg-ghanor-neutral-400 m-auto" />
                     <Input id="username" placeholder="Digite seu email" />
                     <Input
                         id="password"
                         placeholder="Digite sua senha"
                         type="password"
                     />
-                    <div className="flex gap-6 ">
-                        <Button label="Criar conta" />
-                        <Button label="Login" />
+                    <div className="flex gap-6 justify-end">
+                        <Button label="Criar conta" style="ghost" />
+                        <Button
+                            label="Entrar"
+                            icon={<Button.Icon name="Sword" />}
+                        />
                     </div>
                 </div>
             </Container>

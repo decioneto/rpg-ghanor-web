@@ -10,6 +10,9 @@ const config: Config = {
         extend: {
             colors: {
                 ghanor: {
+                    clay: {
+                        "100": "#572222",
+                    },
                     yellow: {
                         "100": "#AB893A",
                         "300": "#CDB273",
