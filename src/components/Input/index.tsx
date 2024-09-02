@@ -50,6 +50,7 @@ export function Input({
                 className="h-12 bg-ghanor-yellow-700 rounded px-4 text-ghanor-neutral-200 outline-none pt-3"
                 onFocus={handleFocus}
                 {...register}
+                autoComplete="on"
             />
             <span className="text-[12px] text-ghanor-status-warning absolute -bottom-5 left-0">
                 {message}

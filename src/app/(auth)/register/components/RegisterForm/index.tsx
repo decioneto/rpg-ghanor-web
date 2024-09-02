@@ -1,10 +1,12 @@
 'use client';
 
+import { createUser } from '@/app/actions/user/create';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Select, SelectItemsProps } from '@/components/Select';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { z } from 'zod';
 import { createUserRegisterSchema } from './userSchema';
 
@@ -26,13 +28,37 @@ export function RegisterForm() {
         register,
         handleSubmit,
         control,
+        reset,
         formState: { errors },
     } = useForm<RegisterUserType>({
         resolver: zodResolver(createUserRegisterSchema),
     });
 
     function handleRegisterUser(data: RegisterUserType) {
-        console.log(data);
+        const roleId = data.roleName === 'player' ? 1 : 2;
+
+        createUser({
+            username: data.username,
+            password: data.password,
+            roleId: roleId,
+        })
+            .then(() => {
+                toast.success(
+                    'Conta criada com sucesso, seja bem-vindo(a) aventureiro(a)'
+                );
+            })
+            .catch((e) => {
+                console.log(e);
+                toast.error(`Opa, parece que algo deu errado. ${e.message}`);
+            })
+            .finally(() => {
+                reset({
+                    username: '',
+                    password: '',
+                    confirmPass: '',
+                    roleName: 'Qual será seu papel?',
+                });
+            });
     }
 
     return (
