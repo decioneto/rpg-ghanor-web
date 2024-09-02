@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+    darkMode: ["class"],
     content: [
         "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -33,8 +34,8 @@ const config: Config = {
                 },
             },
             backgroundImage: {
-                "scale-bg-l": "url('/images/scales-bg-l.jpg')",
-                "scale-bg-r": "url('/images/scales-bg-r.jpg')",
+                "scale-bg-l": "url(/images/scales-bg-l.jpg)",
+                "scale-bg-r": "url(/images/scales-bg-r.jpg)",
             },
             fontFamily: {
                 body: "var(--font-inter)",
@@ -42,6 +43,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [require("tailwindcss-animate")],
 };
 export default config;

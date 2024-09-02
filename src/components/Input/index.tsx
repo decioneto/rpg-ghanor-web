@@ -1,11 +1,11 @@
 "use client";
 
 import cs from "classnames";
-import { useState } from "react";
+import { FocusEvent, useState } from "react";
 
 type InputProps = {
     id: string;
-    register?: any;
+    register: any;
     placeholder: string;
     type?: "text" | "number" | "password";
 };
@@ -17,13 +17,13 @@ export function Input({
     type = "text",
 }: InputProps) {
     const [isFocused, setIsFocused] = useState(false);
-
     function handleFocus() {
         setIsFocused(true);
     }
 
-    function handleBlur() {
-        if (!register) {
+    function handleBlur(e: FocusEvent<HTMLInputElement>) {
+        console.log(e.currentTarget.value);
+        if (!e.currentTarget.value) {
             setIsFocused(false);
         }
     }
@@ -33,7 +33,7 @@ export function Input({
             <label
                 htmlFor={id}
                 className={cs(
-                    "absolute top-0 left-4  text-ghanor-yellow-100 transition-transform font-title",
+                    "absolute top-0 left-4  text-ghanor-yellow-100 transition-transform font-title pointer-events-none",
                     {
                         "translate-y-[4px] text-[10px]": isFocused,
                         "translate-y-[12px] text-lg]": !isFocused,
@@ -45,9 +45,9 @@ export function Input({
             <input
                 id={id}
                 type={type}
-                className="h-12 bg-ghanor-yellow-700 rounded px-4 text-ghanor-neutral-200 outline-none pt-2"
+                className="h-12 bg-ghanor-yellow-700 rounded px-4 text-ghanor-neutral-200 outline-none pt-3"
                 onFocus={handleFocus}
-                onBlur={handleBlur}
+                {...register}
             />
         </div>
     );
