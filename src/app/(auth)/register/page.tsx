@@ -5,7 +5,7 @@ export default async function RegisterPage() {
     return (
         <div className="flex flex-col items-center justify-center h-full gap-8">
             <div>
-                <Logo size="lg" />
+                <Logo size="md" />
             </div>
             <div>
                 <div className="flex flex-col items-center">
