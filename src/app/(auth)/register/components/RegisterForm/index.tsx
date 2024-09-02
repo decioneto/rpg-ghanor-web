@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { Select, SelectItemsProps } from "@/components/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
 type RegisterFormProps = {};
@@ -17,8 +18,19 @@ const registerUserSchema = z.object({
 
 type RegisterUserType = z.infer<typeof registerUserSchema>;
 
+const options: SelectItemsProps[] = [
+    {
+        text: "Mestre",
+        value: "master",
+    },
+    {
+        text: "Jogador",
+        value: "player",
+    },
+];
+
 export function RegisterForm({}: RegisterFormProps) {
-    const { register, handleSubmit } = useForm<RegisterUserType>({
+    const { register, handleSubmit, control } = useForm<RegisterUserType>({
         resolver: zodResolver(registerUserSchema),
     });
 
@@ -35,6 +47,13 @@ export function RegisterForm({}: RegisterFormProps) {
                 id="username"
                 placeholder="Qual seu usuário?"
                 register={register("username")}
+            />
+            <Controller
+                control={control}
+                name="role"
+                render={({ field: { onChange } }) => (
+                    <Select itens={options} onChange={onChange} />
+                )}
             />
             <Input
                 id="password"

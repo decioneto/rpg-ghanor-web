@@ -33,7 +33,7 @@ export function Input({
             <label
                 htmlFor={id}
                 className={cs(
-                    "absolute top-0 left-4  text-ghanor-yellow-100 transition-transform font-title pointer-events-none",
+                    "absolute top-0 left-4 text-ghanor-yellow-100 transition-transform font-title pointer-events-none",
                     {
                         "translate-y-[4px] text-[10px]": isFocused,
                         "translate-y-[12px] text-lg]": !isFocused,
