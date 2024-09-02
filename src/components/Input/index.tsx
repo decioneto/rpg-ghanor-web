@@ -1,20 +1,22 @@
-"use client";
+'use client';
 
-import cs from "classnames";
-import { FocusEvent, useState } from "react";
+import cs from 'classnames';
+import { FocusEvent, useState } from 'react';
 
 type InputProps = {
     id: string;
     register: any;
     placeholder: string;
-    type?: "text" | "number" | "password";
+    type?: 'text' | 'number' | 'password';
+    message?: string;
 };
 
 export function Input({
     id,
     register,
     placeholder,
-    type = "text",
+    type = 'text',
+    message,
 }: InputProps) {
     const [isFocused, setIsFocused] = useState(false);
     function handleFocus() {
@@ -33,10 +35,10 @@ export function Input({
             <label
                 htmlFor={id}
                 className={cs(
-                    "absolute top-0 left-4 text-ghanor-yellow-100 transition-transform font-title pointer-events-none",
+                    'absolute top-0 left-4 text-ghanor-yellow-100 transition-transform font-title pointer-events-none',
                     {
-                        "translate-y-[4px] text-[10px]": isFocused,
-                        "translate-y-[12px] text-lg]": !isFocused,
+                        'translate-y-[4px] text-[10px]': isFocused,
+                        'translate-y-[12px] text-lg]': !isFocused,
                     }
                 )}
             >
@@ -49,7 +51,9 @@ export function Input({
                 onFocus={handleFocus}
                 {...register}
             />
-            <span className="text-[10px] text-ghanor-status-warning"></span>
+            <span className="text-[12px] text-ghanor-status-warning absolute -bottom-5 left-0">
+                {message}
+            </span>
         </div>
     );
 }

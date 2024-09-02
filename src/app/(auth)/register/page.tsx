@@ -1,7 +1,7 @@
-import { Logo } from "@/components/Logo";
-import { RegisterForm } from "./components/RegisterForm";
+import { Logo } from '@/components/Logo';
+import { RegisterForm } from './components/RegisterForm';
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
     return (
         <div className="flex flex-col items-center justify-center h-full gap-8">
             <div>

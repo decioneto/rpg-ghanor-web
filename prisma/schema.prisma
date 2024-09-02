@@ -5,28 +5,30 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String   @id @default(uuid())
-  roleId    Int      @map("role_id")
-  role      Role     @relation(fields: [roleId], references: [id])
-  username  String   @unique
-  password  String
-  createdAt DateTime @default(now()) @map("created_at")
+    id        String   @id @default(uuid())
+    roleId    Int      @map("role_id")
+    role      Role     @relation(fields: [roleId], references: [id])
+    username  String   @unique
+    password  String
+    createdAt DateTime @default(now()) @map("created_at")
 
-  @@map("user")
+    @@map("users")
 }
 
 model Role {
-  id        Int      @id @default(autoincrement())
-  roleName  String   @map("role_name")
-  users     User[]
-  createdAt DateTime @default(now()) @map("created_at")
+    id        Int      @id @default(autoincrement())
+    roleName  String   @map("role_name")
+    users     User[]
+    createdAt DateTime @default(now()) @map("created_at")
+
+    @@map("roles")
 }
