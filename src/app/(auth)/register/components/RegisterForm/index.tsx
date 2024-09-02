@@ -6,17 +6,11 @@ import { Select, SelectItemsProps } from "@/components/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+import { createUserRegisterSchema } from "./userSchema";
 
 type RegisterFormProps = {};
 
-const registerUserSchema = z.object({
-    username: z.string(),
-    role: z.string(),
-    password: z.string(),
-    confirmPassword: z.string(),
-});
-
-type RegisterUserType = z.infer<typeof registerUserSchema>;
+type RegisterUserType = z.infer<typeof createUserRegisterSchema>;
 
 const options: SelectItemsProps[] = [
     {
@@ -31,7 +25,7 @@ const options: SelectItemsProps[] = [
 
 export function RegisterForm({}: RegisterFormProps) {
     const { register, handleSubmit, control } = useForm<RegisterUserType>({
-        resolver: zodResolver(registerUserSchema),
+        resolver: zodResolver(createUserRegisterSchema),
     });
 
     function handleRegisterUser(data: RegisterUserType) {
@@ -50,7 +44,7 @@ export function RegisterForm({}: RegisterFormProps) {
             />
             <Controller
                 control={control}
-                name="role"
+                name="roleName"
                 render={({ field: { onChange } }) => (
                     <Select itens={options} onChange={onChange} />
                 )}
@@ -65,7 +59,7 @@ export function RegisterForm({}: RegisterFormProps) {
                 id="confirmPassword"
                 type="password"
                 placeholder="Confirme sua senha"
-                register={register("confirmPassword")}
+                register={register("confirmPass")}
             />
 
             <div className="flex justify-between items-start">

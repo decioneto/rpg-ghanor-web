@@ -49,6 +49,7 @@ export function Input({
                 onFocus={handleFocus}
                 {...register}
             />
+            <span className="text-[10px] text-ghanor-status-warning"></span>
         </div>
     );
 }
