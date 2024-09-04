@@ -6,6 +6,7 @@ import { Input } from '@/components/Input';
 import { Select, SelectItemsProps } from '@/components/Select';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
@@ -34,6 +35,7 @@ export function RegisterForm() {
     } = useForm<RegisterUserType>({
         resolver: zodResolver(createUserRegisterSchema),
     });
+    const router = useRouter();
 
     function handleRegisterUser(data: RegisterUserType) {
         const roleId = data.roleName === 'player' ? 1 : 2;
@@ -47,6 +49,7 @@ export function RegisterForm() {
                 toast.success(
                     'Conta criada com sucesso, seja bem-vindo(a) aventureiro(a)'
                 );
+                router.push('/signin');
             })
             .catch((e) => {
                 console.log(e);

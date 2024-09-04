@@ -14,8 +14,6 @@ export async function createUser({ username, password, roleId }: CreateUser) {
         throw new Error('Desculpe, mas já temos um hóspide com esse nome!');
 
     const hashPassword = encrypt(password);
-    console.log(hashPassword);
-
     await prisma.user.create({
         data: {
             username: username,
@@ -27,8 +25,6 @@ export async function createUser({ username, password, roleId }: CreateUser) {
             },
         },
     });
-
-    await prisma.$disconnect();
 }
 
 async function verifyDuplicateUser(username: string) {
@@ -37,8 +33,6 @@ async function verifyDuplicateUser(username: string) {
             username: username,
         },
     });
-
-    await prisma.$disconnect();
 
     return user ? true : false;
 }
