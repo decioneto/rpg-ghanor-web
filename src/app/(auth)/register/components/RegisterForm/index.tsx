@@ -38,12 +38,10 @@ export function RegisterForm() {
     const router = useRouter();
 
     function handleRegisterUser(data: RegisterUserType) {
-        const roleId = data.roleName === 'player' ? 1 : 2;
-
         createUser({
             username: data.username,
             password: data.password,
-            roleId: roleId,
+            roleName: data.roleName,
         })
             .then(() => {
                 toast.success(

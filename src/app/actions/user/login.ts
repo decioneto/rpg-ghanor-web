@@ -9,7 +9,6 @@ type LoginUser = {
 };
 
 export async function login({ username, password }: LoginUser) {
-    console.log('oi');
     const user = await prisma.user.findFirst({ where: { username: username } });
     const encryptedPass = encrypt(password);
     console.log(user, encryptedPass);

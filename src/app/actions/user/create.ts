@@ -5,22 +5,31 @@ import { encrypt } from './helpers';
 
 type CreateUser = {
     username: string;
-    roleId: number;
+    roleName: string;
     password: string;
 };
 
-export async function createUser({ username, password, roleId }: CreateUser) {
+export async function createUser({ username, password, roleName }: CreateUser) {
     if (await verifyDuplicateUser(username))
         throw new Error('Desculpe, mas já temos um hóspide com esse nome!');
 
     const hashPassword = encrypt(password);
+
+    const role = await prisma.role.findFirst({
+        where: {
+            roleName: roleName,
+        },
+    });
+
+    if (!role) return;
+
     await prisma.user.create({
         data: {
             username: username,
             password: hashPassword,
             role: {
                 connect: {
-                    id: roleId,
+                    id: role.id,
                 },
             },
         },
